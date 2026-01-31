@@ -30,6 +30,7 @@ export const Lottie = ({ iconName, lottieRef, style }: LottieProps) => {
       lottieRef={lottieRef}
       style={style ?? { width: 24, height: 24 }}
       animationData={animationData}
+      className="filter-[invert(1)] dark:filter-none"
       loop={false}
       autoplay={false}
     />
