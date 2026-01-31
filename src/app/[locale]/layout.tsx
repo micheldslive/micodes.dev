@@ -1,0 +1,49 @@
+import type { Metadata } from 'next';
+import { PropsWithChildren } from 'react';
+
+import { Noise } from '@/components/ui';
+import { i18nConfig } from '@/i18nConfig';
+
+import initTranslations from '../i18n';
+
+import { Providers } from './providers';
+
+import '@/styles/globals.css';
+import { Cursor } from '@/components/common';
+import { TransitionProvider } from '@/providers/TransitionProvider';
+
+export const metadata: Metadata = {
+  title: 'Micodes',
+  description: 'Hello, its my personal portfolio',
+};
+
+export function generateStaticParams() {
+  return i18nConfig.locales.map((locale) => ({ locale }));
+}
+
+const i18nNamespaces = ['default'];
+
+type RootProps = Readonly<
+  PropsWithChildren & {
+    params: Promise<{ locale: string }>;
+  }
+>;
+
+export default async function Root({ children, params }: RootProps) {
+  const { locale } = await params;
+  const { resources } = await initTranslations(locale, i18nNamespaces);
+
+  return (
+    <html lang={locale} suppressHydrationWarning>
+      <body className="antialiased">
+        <main className="min-h-screen">
+          <Providers namespaces={i18nNamespaces} locale={locale} resources={resources}>
+            <Noise />
+            <Cursor />
+            <TransitionProvider>{children}</TransitionProvider>
+          </Providers>
+        </main>
+      </body>
+    </html>
+  );
+}
