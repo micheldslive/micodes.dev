@@ -7,6 +7,9 @@
     },
     "command": {
       "label": "Open Command"
+    },
+    "hamburger": {
+      "label": "Open Menu"
     }
   },
   "intro": {
@@ -97,6 +100,118 @@
       }
     }
   },
-  "main": {},
+  "work": {
+    "tagline": "<span>Apps, Challenges and more</span>",
+    "title": "Work",
+    "description": "Side works are a way to convert your <strong>thoughts and personality</strong> into code. Here you can see the different <strong>{{total}}</strong> works I've been working on.",
+    "featured": "Featured Works",
+    "all": "All Works",
+
+    "items": [
+      {
+        "title": "Portfolio",
+        "description": "My portfolio (Repository of this site)",
+        "links": {
+          "github": "https://github.com/micheldslive/micodes.dev"
+        },
+        "icon": "assignment"
+      },
+      {
+        "title": "JSM",
+        "description": "Project carried out for a Front-End challenge using turborepo.",
+        "links": {
+          "github": "https://github.com/micheldslive/jsm-challenge",
+          "web": "https://jsm.mi-code.dev/"
+        },
+        "icon": "jsm",
+        "width": 28,
+        "height": 28
+      },
+      {
+        "title": "Micode UI",
+        "description": "React Powered Component UI, accessible by default and built on top of Radix. Micode UI is open source and made to be easy to use.",
+        "links": {
+          "github": "https://github.com/micheldslive/micode-ui",
+          "web": "https://ui.mi-code.dev/"
+        },
+        "icon": "mui",
+        "width": 41,
+        "height": 41,
+        "margin": "-5px 0 0 -13px"
+      },
+      {
+        "title": "Dog and Pony",
+        "description": "Project carried out to create a Jobs registration form, saving them in Localstorage.",
+        "links": {
+          "github": "https://github.com/micheldslive/dog-and-pony-challenge",
+          "web": "https://dog-and-pony.mi-code.dev/"
+        },
+        "icon": "dog-and-pony",
+        "width": 51,
+        "height": 51,
+        "margin": "-15px 0 0 -13px"
+      },
+      {
+        "title": "Opea",
+        "description": "Project carried out to create a CRUD using provided API.",
+        "links": {
+          "github": "https://github.com/micheldslive/opea-challenge",
+          "web": "https://opea.mi-code.dev/"
+        },
+        "icon": "opea"
+      },
+      {
+        "title": "Books",
+        "description": "Project carried out to create an authentication environment.",
+        "links": {
+          "github": "https://github.com/micheldslive/books-challenge",
+          "web": "https://books.mi-code.dev/"
+        },
+        "icon": "book"
+      },
+      {
+        "title": "Weather",
+        "description": "Project carried out to read weather information when choosing a specific city.",
+        "links": {
+          "github": "https://github.com/micheldslive/weather-challenge",
+          "web": "https://weater.mi-code.dev/"
+        },
+        "icon": "weather"
+      },
+      {
+        "title": "Movies",
+        "description": "Project carried out to consume data from the TMDB api and create a store with a list of products.",
+        "links": {
+          "github": "https://github.com/micheldslive/movies-challenge",
+          "web": "https://movies.mi-code.dev/"
+        },
+        "icon": "movies"
+      },
+      {
+        "title": "mi-calendar",
+        "description": "Nextjs case study project + react-scheduler.",
+        "links": {
+          "github": "https://github.com/micheldslive/mi-calendar",
+          "web": "https://calendar.mi-code.dev/"
+        },
+        "icon": "calendar",
+        "width": 41,
+        "height": 41,
+        "margin": "0 0 0 -10px"
+      },
+      {
+        "title": "pomodoro-app",
+        "description": "A pomodoro app built using front-end mentor layout",
+        "links": {
+          "github": "https://github.com/micheldslive/pomodoro-app",
+          "web": "https://pomodoro.mi-code.dev/"
+        },
+        "icon": "calendar",
+        "width": 31,
+        "height": 31,
+        "margin": "0 0 0 -5px"
+      }
+    ]
+  },
   "footer": {}
 }
