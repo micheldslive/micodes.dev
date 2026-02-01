@@ -1,5 +1,5 @@
-import { HomePage } from '@/modules/pages';
+import { WorkPage } from '@/modules/pages';
 
 export default function Home() {
-  return <HomePage />;
+  return <WorkPage />;
 }
