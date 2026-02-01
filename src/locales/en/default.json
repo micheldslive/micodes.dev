@@ -68,12 +68,6 @@
     ]
   },
   "common": {
-    "navbar": {
-      "about": "About",
-      "projects": "Projects",
-      "contact": "Contact"
-    },
-
     "kbar": {
       "start": {
         "mobile": "Tap to start →",
@@ -85,8 +79,9 @@
         "email": "Send Email",
         "source": "View Source",
         "home": "Home",
+        "work": "Work",
         "about": "About",
-        "projects": "Projects"
+        "contact": "Contact"
       },
 
       "sections": {
