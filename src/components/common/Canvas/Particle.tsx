@@ -1,15 +1,19 @@
 /* eslint-disable react/no-unknown-property */
-
 'use client';
 
 import { MeshDistortMaterial } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 import { useWaveStore } from '@/stores';
 
 import { ParticleProps } from './types';
+
+const BOUNDS = { x: 8, y: 4.5, z: 3 };
+const VELOCITY_DAMPING = 0.985;
+const MAX_VELOCITY = 0.025;
+const COLOR_LERP_FACTOR = 0.05;
 
 export const Particle = ({
   targets,
@@ -19,12 +23,15 @@ export const Particle = ({
   distortAmount,
   timeOffset,
   color,
+  roughness,
+  metalness,
+  envMapIntensity,
 }: ParticleProps) => {
   const { current: wave } = useWaveStore();
   const meshRef = useRef<THREE.Mesh | null>(null);
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const materialRef = useRef<any>(null);
   const currentPos = useRef(new THREE.Vector3(...initialPosition));
-
   const velocity = useRef(
     new THREE.Vector3(
       THREE.MathUtils.randFloatSpread(0.015),
@@ -32,17 +39,33 @@ export const Particle = ({
       THREE.MathUtils.randFloatSpread(0.008),
     ),
   );
+  const targetVector = useRef(new THREE.Vector3());
+  const targetColor = useRef(new THREE.Color(color as string));
+  const currentColor = useRef(new THREE.Color(color as string));
+  const isFirstColorChange = useRef(true);
+
+  useEffect(() => {
+    targetColor.current.set(color as string);
+    if (isFirstColorChange.current) {
+      currentColor.current.set(color as string);
+      isFirstColorChange.current = false;
+    }
+  }, [color]);
 
   useFrame((state, delta) => {
     const mesh = meshRef.current;
+    const material = materialRef.current;
     if (!mesh) return;
 
-    let target: THREE.Vector3;
+    if (material) {
+      currentColor.current.lerp(targetColor.current, COLOR_LERP_FACTOR);
+      material.color.copy(currentColor.current);
+    }
 
     if (wave !== 'none') {
-      target = new THREE.Vector3(...targets[wave]);
+      targetVector.current.set(...targets[wave]);
     } else {
-      target = currentPos.current;
+      targetVector.current.copy(currentPos.current);
 
       const t = state.clock.elapsedTime + timeOffset;
 
@@ -53,17 +76,17 @@ export const Particle = ({
       velocity.current.x += THREE.MathUtils.randFloatSpread(0.0008);
       velocity.current.y += THREE.MathUtils.randFloatSpread(0.0008);
 
-      velocity.current.multiplyScalar(0.985);
-      velocity.current.clampLength(0, 0.025);
+      velocity.current.multiplyScalar(VELOCITY_DAMPING);
+      velocity.current.clampLength(0, MAX_VELOCITY);
 
       currentPos.current.add(velocity.current);
 
-      if (Math.abs(currentPos.current.x) > 8) velocity.current.x *= -1;
-      if (Math.abs(currentPos.current.y) > 4.5) velocity.current.y *= -1;
-      if (Math.abs(currentPos.current.z) > 3) velocity.current.z *= -1;
+      if (Math.abs(currentPos.current.x) > BOUNDS.x) velocity.current.x *= -1;
+      if (Math.abs(currentPos.current.y) > BOUNDS.y) velocity.current.y *= -1;
+      if (Math.abs(currentPos.current.z) > BOUNDS.z) velocity.current.z *= -1;
     }
 
-    mesh.position.lerp(target, wave === 'none' ? 0.015 : 0.06);
+    mesh.position.lerp(targetVector.current, wave === 'none' ? 0.015 : 0.06);
 
     mesh.rotation.x += delta * 0.08 * floatSpeed;
     mesh.rotation.y += delta * 0.12 * floatSpeed;
@@ -74,12 +97,13 @@ export const Particle = ({
 
   return (
     <mesh ref={meshRef} position={initialPosition}>
-      <sphereGeometry args={[1, 48, 48]} />
+      <sphereGeometry args={[1, 32, 32]} />
       <MeshDistortMaterial
+        ref={materialRef}
         color={color}
-        roughness={0.5}
-        metalness={0.9}
-        envMapIntensity={1}
+        roughness={roughness}
+        metalness={metalness}
+        envMapIntensity={envMapIntensity}
         distort={distortAmount}
         speed={1.5}
       />

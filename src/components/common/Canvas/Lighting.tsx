@@ -8,9 +8,10 @@ import { LIGHT_COLOR } from '@/utils/constants';
 
 type LightingProps = {
   mainColor: string;
+  ambientIntensity?: number;
 };
 
-export const Lighting = ({ mainColor }: LightingProps) => {
+export const Lighting = ({ mainColor, ambientIntensity = 0.25 }: LightingProps) => {
   const lightsData = useMemo(() => {
     const lights: {
       position: readonly [number, number, number];
@@ -33,7 +34,7 @@ export const Lighting = ({ mainColor }: LightingProps) => {
 
   return (
     <>
-      <ambientLight intensity={0.25} />
+      <ambientLight intensity={ambientIntensity} />
       <directionalLight position={[10, 10, 5]} intensity={0.8} color="#f0f0ff" />
       <directionalLight position={[-10, -5, -5]} intensity={0.3} color={mainColor} />
       <spotLight position={[0, 15, 5]} angle={0.4} penumbra={1} intensity={0.6} color="#ffffff" />
