@@ -7,3 +7,5 @@ export * from './Lottie';
 export * from './Menu';
 export * from './Theme';
 export * from './Wave';
+export * from './Heading';
+export * from './Badge';

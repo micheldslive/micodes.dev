@@ -1,16 +1,20 @@
 'use client';
 
+import { ComponentProps } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Link, Typography } from '@/components/ui';
 import { For } from '@/components/utils';
+import { cn } from '@/lib/utils';
 import { NavigationProps } from '@/types';
 
-export const Social = () => {
+type SocialProps = ComponentProps<'ul'>;
+
+export const Social = ({ className, ...props }: SocialProps) => {
   const { t } = useTranslation();
   const social = t('menu.social', { returnObjects: true }) as NavigationProps[];
   return (
-    <ul className="flex gap-8 pt-5">
+    <ul className={cn('flex gap-8 pt-5', className)} {...props}>
       <For each={social}>
         {(props, index) => (
           <Typography
@@ -19,9 +23,9 @@ export const Social = () => {
             filling="inline"
             variation="random"
             weight="normal"
-            className="w-fit text-xl text-slate-500 duration-400 md:text-xl dark:text-slate-50"
+            className="w-fit text-xl text-slate-500 duration-400 dark:text-slate-50"
           >
-            <Link.Underline {...props} />
+            <Link.Underline {...props} target="_blank" />
           </Typography>
         )}
       </For>
