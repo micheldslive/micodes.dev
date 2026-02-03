@@ -2,15 +2,11 @@
 
 import React, { ComponentProps } from 'react';
 
+import { SelectOption } from '@/types';
+
 import { Button } from '../Button';
 import { Dropdown } from '../Dropdown';
 import { Tooltip } from '../Tooltip';
-
-export type SelectOption = {
-  value: string;
-  label: string;
-  icon?: React.ReactNode;
-};
 
 export type SelectProps = Omit<ComponentProps<'input'>, 'ref' | 'onChange'> & {
   options: SelectOption[];
