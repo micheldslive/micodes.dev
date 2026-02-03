@@ -1,6 +1,6 @@
 'use client';
 
-import { AnimatePresence, motion, AnimatePresenceProps } from 'framer-motion';
+import { AnimatePresence, motion, AnimatePresenceProps, DOMMotionComponents } from 'framer-motion';
 import { ComponentProps } from 'react';
 
 import { EASE_TYPES, EaseType } from '@/utils/constants';
@@ -22,11 +22,14 @@ export type SlideFadeInAnimationProps = {
   animationPresenceProps?: AnimatePresenceProps;
 };
 
-export type SlideFadeInProps = SlideFadeInAnimationProps &
+type SlideFadeInProps = {
+  as?: keyof DOMMotionComponents;
+} & SlideFadeInAnimationProps &
   Pick<ComponentProps<'div'>, 'children' | 'className'>;
 
 export const SlideFadeIn = (props: SlideFadeInProps) => {
   const {
+    as,
     show = true,
     slide = 50,
     direction = 'down',
@@ -77,10 +80,12 @@ export const SlideFadeIn = (props: SlideFadeInProps) => {
     },
   } as const;
 
+  const Component = motion[as || 'div'];
+
   return (
     <AnimatePresence {...animationPresenceProps}>
       {show && (
-        <motion.div
+        <Component
           variants={animations[direction]}
           initial="initial"
           animate="animate"
