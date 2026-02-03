@@ -2,7 +2,10 @@ import { MeshDistortMaterialProps } from '@react-three/drei';
 
 import { TargetInitials, TargetProps } from '@/types';
 
-export type ParticleColorProps = Pick<MeshDistortMaterialProps, 'color'>;
+export type ParticleColorProps = Pick<
+  MeshDistortMaterialProps,
+  'color' | 'roughness' | 'metalness' | 'envMapIntensity'
+>;
 
 type ParticleTargets = Record<TargetInitials, TargetProps>;
 
@@ -13,5 +16,4 @@ export type ParticleProps = {
   floatSpeed: number;
   distortAmount: number;
   timeOffset: number;
-  scaleFactor: number;
 } & ParticleColorProps;

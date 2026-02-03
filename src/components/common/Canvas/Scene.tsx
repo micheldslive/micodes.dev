@@ -2,24 +2,33 @@
 'use client';
 
 import { Environment } from '@react-three/drei';
-import { useTheme, UseThemeProps } from 'next-themes';
+import { memo } from 'react';
 
-import { SCENE_THEMES } from '@/utils/constants';
-
+import { useCanvasTheme, useResponsiveCamera, useThemeTransition } from './hooks';
 import { Lighting } from './Lighting';
 import { Particles } from './Particles';
 
+// Memoizar Particles para evitar rerenderização quando Environment muda
+const MemoizedParticles = memo(Particles);
+
 export const Scene = () => {
-  const { theme } = useTheme();
-  const scene = SCENE_THEMES[(theme as Required<UseThemeProps>['systemTheme']) ?? 'dark'];
+  useResponsiveCamera();
+  const { theme } = useCanvasTheme();
+
+  useThemeTransition(theme);
 
   return (
     <>
-      <color attach="background" args={[scene.background]} />
-      <fog attach="fog" args={[scene.fog, 8, 25]} />
-      <Lighting mainColor={scene.main} />
-      <Environment preset={scene.preset} />
-      <Particles color={scene.main} />
+      <color attach="background" args={[theme.background]} />
+      <fog attach="fog" args={[theme.fog, 8, 25]} />
+      <Lighting mainColor={theme.main} ambientIntensity={theme.ambientIntensity} />
+      <Environment preset="night" />
+      <MemoizedParticles
+        color={theme.main}
+        roughness={theme.roughness}
+        metalness={theme.metalness}
+        envMapIntensity={theme.envMapIntensity}
+      />
     </>
   );
 };

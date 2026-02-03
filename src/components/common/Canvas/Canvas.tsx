@@ -6,7 +6,7 @@ import { CANVAS_CONFIG } from './config';
 import { Scene } from './Scene';
 
 const Canvas = () => (
-  <div className="absolute inset-0 z-0">
+  <div className="absolute inset-0 z-0 bg-slate-100 dark:bg-slate-800">
     <ThreeCanvas {...CANVAS_CONFIG}>
       <Scene />
     </ThreeCanvas>
