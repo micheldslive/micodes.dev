@@ -17,8 +17,8 @@ export const Intro = () => {
     <SlideFadeIn delay={1} className="relative flex flex-col" show={!isOpen}>
       <div className="relative flex min-h-screen flex-col justify-center max-md:text-2xl">
         <div className="relative text-center">
-          <Wave label={t('intro.myself.label')} name={t('intro.myself.name')} wave="MD" />
-          <Wave label={t('intro.callme.label')} name={t('intro.callme.name')} wave="MC" />
+          <Wave label={t('page.home.me.label')} name={t('page.home.me.name')} wave="MD" />
+          <Wave label={t('page.home.callme.label')} name={t('page.home.callme.name')} wave="MC" />
           <div className="mb-4">
             <Typography
               as="span"
@@ -29,7 +29,7 @@ export const Intro = () => {
             >
               <Typewriter
                 options={{
-                  strings: t('intro.typewriter', { returnObjects: true }) as string[],
+                  strings: t('page.home.typewriter', { returnObjects: true }) as string[],
                   autoStart: true,
                   deleteSpeed: 80,
                   delay: 60,

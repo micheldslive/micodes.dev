@@ -1,1 +1,1 @@
-export * from './Work';
+export * from './WorkPage';

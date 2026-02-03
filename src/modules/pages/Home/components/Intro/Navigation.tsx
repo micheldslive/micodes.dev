@@ -1,16 +1,20 @@
 'use client';
 
+import { ComponentProps } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Link, Typography } from '@/components/ui';
 import { For } from '@/components/utils';
-import { NavigationProps } from '@/types';
+import { cn } from '@/lib/utils';
+import { NavigationProps as NavigationPropsType } from '@/types';
 
-export const Navigation = () => {
+type NavigationProps = ComponentProps<'ul'>;
+
+export const Navigation = ({ className, ...props }: NavigationProps) => {
   const { t } = useTranslation();
-  const navigation = t('intro.navigation', { returnObjects: true }) as NavigationProps[];
+  const navigation = t('page.home.navigation', { returnObjects: true }) as NavigationPropsType[];
   return (
-    <ul className="flex justify-center gap-4">
+    <ul className={cn('flex justify-center gap-4', className)} {...props}>
       <For each={navigation}>
         {(props, index) => (
           <Typography

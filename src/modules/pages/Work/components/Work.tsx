@@ -6,7 +6,7 @@ import { useMenuStore } from '@/stores';
 import { WorkList } from './WorkList';
 import { WorkPreview } from './WorkPreview';
 
-export const WorkContent = () => {
+export const Work = () => {
   const { isOpen } = useMenuStore();
   return (
     <SlideFadeIn
