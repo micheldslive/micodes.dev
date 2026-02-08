@@ -39,9 +39,9 @@ export default async function Root({ children, params }: RootProps) {
       <body className="antialiased">
         <NextTopLoader color="#606887" showSpinner={false} />
         <main className="min-h-screen">
+          <Noise />
+          <Cursor />
           <Providers namespaces={i18nNamespaces} locale={locale} resources={resources}>
-            <Noise />
-            <Cursor />
             <section className="relative z-1 min-h-screen w-full overflow-hidden">
               <Header />
               <div className="animate-item">

@@ -5,20 +5,20 @@ import { createStore, useStore } from 'zustand';
 import { TargetInitials } from '@/types';
 
 interface WaveState {
-  current: TargetInitials | 'none';
+  wave: TargetInitials | 'none';
 }
 
 interface WaveActions {
-  setWave: (wave: WaveState['current']) => void;
+  setWave: (wave: WaveState['wave']) => void;
 }
 
 type WaveStore = WaveState & WaveActions;
 
 const waveStore = createStore<WaveStore>()((set) => ({
-  current: 'none',
-  setWave: (current) => set(() => ({ current })),
+  wave: 'none',
+  setWave: (wave) => set(() => ({ wave })),
 }));
 
-export const useWaveStore = () => useStore(waveStore);
+export const useWave = () => useStore(waveStore);
 
 export type { WaveState };

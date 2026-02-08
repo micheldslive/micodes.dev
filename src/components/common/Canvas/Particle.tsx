@@ -6,7 +6,7 @@ import { useFrame } from '@react-three/fiber';
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-import { useWaveStore } from '@/stores';
+import { useWave } from '@/stores';
 
 import { ParticleProps } from './types';
 
@@ -27,7 +27,7 @@ export const Particle = ({
   metalness,
   envMapIntensity,
 }: ParticleProps) => {
-  const { current: wave } = useWaveStore();
+  const { wave } = useWave();
   const meshRef = useRef<THREE.Mesh | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const materialRef = useRef<any>(null);

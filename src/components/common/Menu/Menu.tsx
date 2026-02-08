@@ -2,13 +2,13 @@
 
 import { SlideFadeIn } from '@/components/transitions';
 import { cn } from '@/lib/utils';
-import { useMenuStore } from '@/stores';
+import { useMenu } from '@/stores';
 
 import { Navigation } from './Navigation';
 import { Social } from './Social';
 
 export const Menu = () => {
-  const { isOpen } = useMenuStore();
+  const { isOpen } = useMenu();
   return (
     <div
       className={cn(

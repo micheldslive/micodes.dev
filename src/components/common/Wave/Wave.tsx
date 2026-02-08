@@ -4,16 +4,16 @@ import { motion } from 'framer-motion';
 import { ComponentProps } from 'react';
 
 import { Typography } from '@/components/ui';
-import { useWave } from '@/hooks';
+import { useAnimatedWave } from '@/hooks';
 import { WaveState } from '@/stores';
 
 type WaveProps = {
   name?: string;
-  wave: WaveState['current'];
+  wave: WaveState['wave'];
 } & Pick<ComponentProps<'option'>, 'label'>;
 
 export function Wave({ label, name, wave }: WaveProps) {
-  const { backgroundPositionX, startWave, stopWave } = useWave();
+  const { backgroundPositionX, startWave, stopWave } = useAnimatedWave();
   return (
     <Typography
       as="h3"

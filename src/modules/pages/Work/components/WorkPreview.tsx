@@ -3,10 +3,10 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
-import { useWorkStore } from '../store/work';
+import { useWork } from '../store';
 
 export const WorkPreview = () => {
-  const { activeImage } = useWorkStore();
+  const { activeImage } = useWork();
   return (
     <div className="relative mr-6 hidden w-1/2 md:block">
       <div className="absolute h-full w-full overflow-hidden rounded-tr-[48px]">

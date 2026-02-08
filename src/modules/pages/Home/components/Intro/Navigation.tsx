@@ -14,7 +14,7 @@ export const Navigation = ({ className, ...props }: NavigationProps) => {
   const { t } = useTranslation();
   const navigation = t('page.home.navigation', { returnObjects: true }) as NavigationPropsType[];
   return (
-    <ul className={cn('flex justify-center gap-4', className)} {...props}>
+    <ul className={cn('flex flex-wrap justify-center gap-x-6', className)} {...props}>
       <For each={navigation}>
         {(props, index) => (
           <Typography
@@ -23,7 +23,7 @@ export const Navigation = ({ className, ...props }: NavigationProps) => {
             filling="inline"
             variation="random"
             weight="normal"
-            className="text-lg text-slate-500 dark:text-slate-50"
+            className="text-base! text-slate-500 md:text-lg! dark:text-slate-50"
           >
             <Link.Underline {...props} />
           </Typography>

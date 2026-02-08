@@ -3,10 +3,10 @@
 import { PropsWithChildren } from 'react';
 
 import { SlideFadeIn } from '@/components/transitions';
-import { useMenuStore } from '@/stores';
+import { useMenu } from '@/stores';
 
 export const Base = ({ children }: PropsWithChildren) => {
-  const { isOpen } = useMenuStore();
+  const { isOpen } = useMenu();
   return (
     <SlideFadeIn
       delay={1}

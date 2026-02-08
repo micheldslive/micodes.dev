@@ -19,4 +19,4 @@ const menuStore = createStore<MenuStore>()((set) => ({
   close: () => set(() => ({ isOpen: false })),
 }));
 
-export const useMenuStore = () => useStore(menuStore);
+export const useMenu = () => useStore(menuStore);

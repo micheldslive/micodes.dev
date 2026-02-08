@@ -4,7 +4,7 @@ import { Typography } from '@/components/ui';
 import { cn } from '@/lib/utils';
 import { type WorkItemProps } from '@/types';
 
-import { useWorkStore } from '../store/work';
+import { useWork } from '../store';
 
 import { WorkItemLinks } from './WorkListLinks';
 
@@ -13,7 +13,7 @@ type WorkListItemProps = {
 };
 
 export const WorkListItem = ({ work }: WorkListItemProps) => {
-  const { setActiveImage } = useWorkStore();
+  const { setActiveImage } = useWork();
 
   const Component = work.links.web || work.links.github ? 'a' : 'div';
 
@@ -33,7 +33,7 @@ export const WorkListItem = ({ work }: WorkListItemProps) => {
             <Typography
               as="h4"
               color="secondary"
-              className="relative -translate-x-full pr-3 font-studiofeixen-variable text-2xl font-bold transition-transform duration-300 group-hover/item:translate-x-0"
+              className="relative -translate-x-full pr-3 font-studiofeixen-variable text-2xl font-bold transition-transform duration-300 sm:group-hover/item:translate-x-0"
             >
               →
             </Typography>
@@ -45,8 +45,8 @@ export const WorkListItem = ({ work }: WorkListItemProps) => {
             variation="random"
             weight="bold"
             className={cn(
-              'mr-10 truncate text-2xl whitespace-nowrap transition-transform duration-300',
-              'lowercase group-hover/item:translate-x-8',
+              'mr-10 truncate text-xl! whitespace-nowrap transition-transform duration-300 sm:text-2xl!',
+              'lowercase sm:group-hover/item:translate-x-8',
             )}
           >
             {work.title}
