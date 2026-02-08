@@ -17,4 +17,4 @@ const workStore = createStore<WorkStore>()((set) => ({
   setActiveImage: (image) => set(() => ({ activeImage: image })),
 }));
 
-export const useWorkStore = () => useStore(workStore);
+export const useWork = () => useStore(workStore);

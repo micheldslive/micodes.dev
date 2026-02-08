@@ -15,7 +15,7 @@ export const Header = () => (
     <Link href="/">
       <Logotype />
     </Link>
-    <nav className="flex items-center gap-3 text-slate-400">
+    <nav className="flex items-center gap-1.5 text-slate-400 sm:gap-3">
       <Command />
       <Theme />
       <Hamburger />
