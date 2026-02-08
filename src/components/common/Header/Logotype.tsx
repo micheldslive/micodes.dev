@@ -2,10 +2,10 @@
 
 import { SlideFadeIn } from '@/components/transitions';
 import { Logo, Typography } from '@/components/ui';
-import { useMenuStore } from '@/stores';
+import { useMenu } from '@/stores';
 
 export const Logotype = () => {
-  const { isOpen } = useMenuStore();
+  const { isOpen } = useMenu();
   return (
     <div className="flex items-center gap-5 text-slate-400">
       <Logo className="h-fit max-w-16 fill-slate-500 md:max-w-16 dark:fill-slate-50" />

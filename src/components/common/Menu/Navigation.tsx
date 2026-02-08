@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next';
 
 import { Link, Typography } from '@/components/ui';
 import { For } from '@/components/utils';
-import { useWave } from '@/hooks';
+import { useAnimatedWave } from '@/hooks';
 import { cn } from '@/lib/utils';
-import { useMenuStore } from '@/stores';
+import { useMenu } from '@/stores';
 import { NavigationProps, TargetInitials } from '@/types';
 
 type MenuNavegationProps = {
@@ -15,8 +15,8 @@ type MenuNavegationProps = {
 
 export const Navigation = () => {
   const { t } = useTranslation();
-  const { startBullets, stopBullets } = useWave();
-  const { close } = useMenuStore();
+  const { startBullets, stopBullets } = useAnimatedWave();
+  const { close } = useMenu();
   const navigation = t('menu.navigation', { returnObjects: true }) as MenuNavegationProps[];
   return (
     <ol className="flex flex-col gap-4 [counter-reset:counter]">
