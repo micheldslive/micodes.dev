@@ -3,20 +3,20 @@
 import { useProgress } from '@react-three/drei';
 import { useEffect } from 'react';
 
-import { useLoader } from '@/providers';
+import { useLoader } from '@/stores';
 
 export const CanvasLoader = () => {
   const { active, progress } = useProgress();
-  const { setIsLoading } = useLoader();
+  const { setLoading } = useLoader();
 
   useEffect(() => {
     if (progress === 100 || !active) {
       const timer = setTimeout(() => {
-        setIsLoading(false);
+        setLoading(false);
       }, 500);
       return () => clearTimeout(timer);
     }
-  }, [progress, active, setIsLoading]);
+  }, [progress, active, setLoading]);
 
   return null;
 };

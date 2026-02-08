@@ -8,7 +8,7 @@ import { useState, type ReactNode } from 'react';
 import { I18nextProvider } from 'react-i18next';
 
 import { Canvas, Preloader } from '@/components/common';
-import { KBarProvider, LoaderProvider } from '@/providers';
+import { KBarProvider } from '@/providers';
 
 import initTranslations from '../i18n';
 
@@ -35,15 +35,12 @@ export const Providers = ({ children, locale, namespaces, resources }: Providers
           storageKey="theme"
           forcedTheme={undefined}
         >
-          <LoaderProvider>
-            <TooltipProvider>
-              <KBarProvider>
-                <Preloader />
-                {children}
-              </KBarProvider>
-            </TooltipProvider>
-            <Canvas />
-          </LoaderProvider>
+          <TooltipProvider>
+            <KBarProvider>
+              <Preloader>{children}</Preloader>
+            </KBarProvider>
+          </TooltipProvider>
+          <Canvas />
         </ThemeProvider>
       </I18nextProvider>
     </QueryClientProvider>
